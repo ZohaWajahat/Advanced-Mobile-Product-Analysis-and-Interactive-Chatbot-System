@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body {
+          font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #000; /* Changed font color to black */
+    /* Background Image */
+    background-image: url('{{ url_for('static', filename='chatbotimage.png') }}');
+    background-size: cover;
+    background-repeat: no-repeat;
+        }
+
+        h1 {
+            color: #000; /* Changing h1 color to black */
+        font-weight: bold; /* Making h1 bold */
+        text-align: center;
+        padding: 20px 0;
+        }
+
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        input[type="text"], input[type="submit"] {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        input[type="text"] {
+            width: 70%;
+        }
+
+        input[type="submit"] {
+            width: 20%;
+            background-color: #2ecc71;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #27ae60;
+        }
+
+        #chatbot-response {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chatbot</h1>
+    <form action="/ask" method="post">
+        <input type="text" name="message" placeholder="Type your message...">
+        <input type="submit" value="Ask">
+    </form>
+    <div id="chatbot-response">
+        {% if product_details %}
+            <h2>Product Details</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Product Price</th>
+                        <th>Additional Information</th>
+                        <th>Reviews</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in product_details.iterrows() %}
+                        <tr>
+                            <td>{{ row[1]['Product Name'] }}</td>
+                            <td>{{ row[1][' Product Price'] }}</td>
+                            <td>{{ row[1]['Additional Information'] }}</td>
+                            <td>{{ row[1]['Reviews'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+    <a href="/dashboard">Dashboard</a>
+</body>
+</html>

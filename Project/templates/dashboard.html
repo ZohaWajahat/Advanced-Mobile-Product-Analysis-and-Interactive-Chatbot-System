@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <style>
+        /* Add your CSS styles for the dashboard here */
+        /* Example styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        /* Define additional styles as needed */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dashboard</h1>
+        <p>Total number of listings: {{ total_listings }}</p>
+        <p>Average product price: {{ avg_price }}</p>
+        <p>Average ratings of products: {{ avg_ratings }}</p>
+        <p>Average review count per product: {{ avg_review_count }}</p>
+        <p>Total number of questions asked: {{ total_questions }}</p>
+        
+        <h2>Top 5 products based on ratings:</h2>
+        <table>
+            <tr>
+                <th>Product Name</th>
+                <th>Ratings</th>
+            </tr>
+            {% for product in top_products %}
+            <tr>
+                <td>{{ product['Product Name'] }}</td>
+                <td>{{ product['Ratings'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
